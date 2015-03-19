@@ -1,5 +1,7 @@
 # Morpheus
 
+Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography
+
 ### Installing via Composer
 
 The recommended way to install Morpheus is through [Composer](http://getcomposer.org).

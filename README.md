@@ -1,6 +1,8 @@
 # Morpheus
 
-Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography
+Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography.
+
+The library works regardless with image Magick or GD library. 
 
 ### Installing via Composer
 
@@ -21,7 +23,9 @@ require 'vendor/autoload.php';
 ```
 ### How to use it
 
-```php
+With GD library
+
+```php 
 # to write data in image
 $im = imagecreatefrompng("source.png");
 Morpheus\Data::write("Helloworld", $im);
@@ -33,13 +37,27 @@ assert("Helloworld" === Morpheus\Data::read($im));
 
 ```
 
+With Image Magick
+
+```php 
+# to write data in image
+$im = new Imagick("source.png");
+Morpheus\Data::write("Helloworld", $im);
+$im->writeImage("output.png");
+
+# to read data from image
+$im = new Imagick("output.png");
+assert("Helloworld" === Morpheus\Data::read($im));
+
+```
+
 ### How it's work ?
 
-Let's explain how it's work with an example.
+Let's explain how it's work with an example. Consider this beautiful octocat
 
 ![input](https://raw.githubusercontent.com/pyrou/Morpheus/master/docs/example.png)
 
-```php
+```php 
 require 'vendor/autoload.php';
 $im = imagecreatefrompng("source.png");
 $data = base64_encode(
@@ -49,7 +67,6 @@ $data = base64_encode(
 Morpheus\Data::write($data, $im);
 imagepng($im, "output.png");
 ```
-
 
 Bellow is how humans and computers (or perspicuous humans) can see the `output.png` file.
 

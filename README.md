@@ -51,7 +51,7 @@ assert("Helloworld" === Morpheus\Data::read($im));
 
 ```
 
-### How it's work ?
+### How does it work ?
 
 Let's explain how it's work with an example. Consider this beautiful octocat
 

@@ -39,6 +39,18 @@ Let's explain how it's work with an example.
 
 ![input](https://raw.githubusercontent.com/pyrou/Morpheus/master/docs/example.png)
 
+```php
+require 'vendor/autoload.php';
+$im = imagecreatefrompng("source.png");
+$data = base64_encode(
+	"L'homme est un homme tant qu'il s'évertue ".
+	"à s'élever au dessus de la nature, et cette ".
+	"nature est à la fois intérieure et extérieure.");
+Morpheus\Data::write($data, $im);
+imagepng($im, "output.png");
+```
+
+
 Bellow is how humans and computers (or perspicuous humans) can see the `output.png` file.
 
 | output.png | `--debug`* |

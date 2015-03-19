@@ -74,6 +74,6 @@ Bellow is how humans and computers (or perspicuous humans) can see the `output.p
 | --- | --- |
 | ![output.png](https://raw.githubusercontent.com/pyrou/Morpheus/master/docs/output@3x.png) | ![What library sees](https://raw.githubusercontent.com/pyrou/Morpheus/master/docs/whatLibrarySees@3x.png) |
 
-In fact, the library has slightly changed the coloration of each pixels in upper-half of the file. So slightly than a human eye is NOT able to detect it.
+In fact, the library has slightly changed the coloration of each pixels in upper-half of the file. So slightly that human eyes are NOT able to detect it.
 
 *For understand what Morpheus did, and what he sees now.

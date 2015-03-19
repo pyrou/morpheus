@@ -26,10 +26,11 @@ abstract class Image {
 	 * @return Morpheus\Image
 	 */
 	static function create($im) {
+
 		if(is_resource($im) && get_resource_type($im)) {
 			return new ImageGD($im);
 		}
-		if($im instanceOf Imagick) {
+		if($im instanceof \Imagick) {
 			return new ImageImagick($im);
 		}
 	}
@@ -226,7 +227,7 @@ class ImageImagick extends Image {
 
 	protected $im;
 
-	protected function __construct(Imagick $im) {
+	protected function __construct(\Imagick $im) {
 		$this->im = $im;
 		parent::__construct();
 	}
@@ -244,17 +245,24 @@ class ImageImagick extends Image {
 		$colors = $pixel->getColor();
 
 		// Determine alpha value
-		// $ncolor = $pixel->getColor($normalized = true);
-		// $alpha = round($ncolors['a'] * 0xFF);
+		$ncolors = $pixel->getColor($normalized = true);
+		$alpha = round($ncolors['a'] * 0xFF);
 
-		return new Color($color['r'], $color['g'], $color['b']);
+		return new Color($colors['r'], $colors['g'], $colors['b'], $alpha);
 	}
 
 	function setColor($x, $y, Color $color) {
 		$pixel = $this->im->getImagePixelColor($x, $y);
-		$pixel->setColorValue(Imagick::COLOR_RED,   $color->r / 0xFF);
-		$pixel->setColorValue(Imagick::COLOR_GREEN, $color->g / 0xFF);
-		$pixel->setColorValue(Imagick::COLOR_BLUE,  $color->b / 0xFF);
+
+		$pixel->setColorValue(\Imagick::COLOR_RED,   $color->r / 0xFF);
+		$pixel->setColorValue(\Imagick::COLOR_GREEN, $color->g / 0xFF);
+		$pixel->setColorValue(\Imagick::COLOR_BLUE,  $color->b / 0xFF);
+		$pixel->setColorValue(\Imagick::COLOR_ALPHA, max($color->a, 1) / 0xFF);
+
+		$draw  = new \ImagickDraw();
+      	$draw->setFillColor($pixel);
+      	$draw->point($x, $y);
+      	$this->im->drawImage($draw);
 	}
 
 }

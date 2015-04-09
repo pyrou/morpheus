@@ -1,5 +1,7 @@
 # Morpheus
 
+[![Code Climate](https://codeclimate.com/github/pyrou/morpheus/badges/gpa.svg)](https://codeclimate.com/github/pyrou/morpheus)
+
 Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography.
 
 The library works regardless with image Magick or GD library. 

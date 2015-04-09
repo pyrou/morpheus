@@ -219,7 +219,7 @@ class ImageGD extends Image {
 			$im_color = imagecolorallocate($this->im,$r,$g,$b);
 		}
 		imagesetpixel($this->im,$x,$y,$im_color);
-        imagecolordeallocate($this->im, $im_color);
+		imagecolordeallocate($this->im, $im_color);
 	}
 }
 
@@ -260,9 +260,9 @@ class ImageImagick extends Image {
 		$pixel->setColorValue(\Imagick::COLOR_ALPHA, max($color->a, 1) / 0xFF);
 
 		$draw  = new \ImagickDraw();
-      	$draw->setFillColor($pixel);
-      	$draw->point($x, $y);
-      	$this->im->drawImage($draw);
+		$draw->setFillColor($pixel);
+		$draw->point($x, $y);
+		$this->im->drawImage($draw);
 	}
 
 }

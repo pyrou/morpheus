@@ -5,18 +5,14 @@
 
 Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography.
 
-The library works regardless with image Magick or GD library. 
+The library works regardless with imageMagick or GD library. 
 
 ### Installing via Composer
 
 The recommended way to install Morpheus is through [Composer](http://getcomposer.org).
 
 ```bash
-# Install Composer
-curl -sS https://getcomposer.org/installer | php
-
-# Add Guzzle as a dependency
-php composer.phar require pyrou/morpheus
+composer require pyrou/morpheus
 ```
 
 After installing, you need to require Composer's autoloader:
@@ -29,12 +25,12 @@ require 'vendor/autoload.php';
 With GD library
 
 ```php 
-# to write data in image
+# write data in image
 $im = imagecreatefrompng("source.png");
 Morpheus\Data::write("Helloworld", $im);
 imagepng($im, "output.png");
 
-# to read data from image
+# read data from image
 $im = imagecreatefrompng("output.png");
 assert("Helloworld" === Morpheus\Data::read($im));
 
@@ -43,12 +39,12 @@ assert("Helloworld" === Morpheus\Data::read($im));
 With Image Magick
 
 ```php 
-# to write data in image
+# write data in image
 $im = new Imagick("source.png");
 Morpheus\Data::write("Helloworld", $im);
 $im->writeImage("output.png");
 
-# to read data from image
+# read data from image
 $im = new Imagick("output.png");
 assert("Helloworld" === Morpheus\Data::read($im));
 

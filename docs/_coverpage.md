@@ -6,6 +6,6 @@
 * Compatible with GD library or ImageMagick
 
 [GitHub](https://github.com/pyrou/Morpheus/)
-[Get Started](#docsify)
+[Get Started](#morpheus)
 
 ![color](#dadada)

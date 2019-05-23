@@ -22,7 +22,7 @@ abstract class Image {
 	/**
 	 * Create a new Morpheus\Image instance.
 	 *
-	 * @param resource|Imagick GD Resource or Imagick instance
+	 * @param resource|Imagick GD Resource or Imagick instance or Intervention
 	 * @return Morpheus\Image
 	 */
 	static function create($im) {
@@ -32,6 +32,9 @@ abstract class Image {
 		}
 		if($im instanceof \Imagick) {
 			return new ImageImagick($im);
+		}
+		if($im instanceof \Intervention\Image\Image) {
+			return new Intervention($im);
 		}
 	}
 
@@ -263,6 +266,41 @@ class ImageImagick extends Image {
 		$draw->setFillColor($pixel);
 		$draw->point($x, $y);
 		$this->im->drawImage($draw);
+	}
+
+}
+
+class Intervention extends Image {
+
+	protected $im;
+
+	protected function __construct(\Intervention\Image\Image $im) {
+		$this->im = $im;
+		parent::__construct();
+	}
+
+	function getWidth() {
+		return $this->im->width();
+	}
+
+	function getHeight() {
+		return $this->im->height();
+	}
+
+	function getColor($x, $y) {
+		$colors = $this->im->pickColor($x, $y);
+		$alpha = round($colors['3'] * 0xFF);
+		
+		return new Color($colors[0], $colors[1], $colors[2], $alpha);
+	}
+
+	function setColor($x, $y, Color $color) {
+		$r = (int) $color->r;
+		$g = (int) $color->g;
+		$b = (int) $color->b;
+		$a = max((int) $color->a, 1) / 0xFF;
+
+		$this->im->pixel([$r, $g, $b, $a], $x, $y);
 	}
 
 }

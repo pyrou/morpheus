@@ -5,7 +5,7 @@
 
 Morpheus is a library to encrypt and decrypt data in colors of a picture. Process also known as steganography.
 
-The library works regardless with imageMagick or GD library.
+The project works regardless with imageMagick, GD library, or the well written [intervention](http://image.intervention.io/) library.
 
 ### Installing via Composer
 

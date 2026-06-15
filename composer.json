@@ -19,7 +19,7 @@
             "Morpheus\\": "src/"
         },
         "files": [
-           "src/helpers.php"
+           "src/.experiment/helpers.php"
         ]
     }
 }

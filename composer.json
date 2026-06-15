@@ -17,6 +17,9 @@
     "autoload": {
         "psr-0": {
             "Morpheus\\": "src/"
-        }
+        },
+        "files": [
+           "src/.experiment/helpers.php"
+        ]
     }
 }
